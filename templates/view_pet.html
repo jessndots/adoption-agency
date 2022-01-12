@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{pet.name}}
+{% endblock %}
+{% block content %}
+<div class='container'>
+    <br>
+    <h2>{{pet.name}} <a href="/{{pet.id}}/edit" role="button" type="button" class="btn btn-secondary">Edit</a></h2>
+    <img style="max-height: 500px;" src="{{pet.image_url}}" alt="">
+    <div class="list-group list-group-flush">
+        <p class="text-success fw-bold fs-4">
+            {% if pet.available %}
+                Available for adoption
+            {% endif %}
+        </p>
+        <p class="text-danger fw-bold fs-3">
+            {% if pet.available == False %}
+                Not currently available for adoption. Please call for more information.
+            {% endif %}
+        </p>
+        <p class="text-capitalize fs-5">{{pet.species}}</p>
+        <p class="text-capitalize fs-5">{% if pet.sex == 'f' %}Female{% endif %}{% if pet.sex == 'm' %}Male{% endif %}</p>
+        {% if pet.breed %}
+            <p class="text-capitalize fs-5">Breed: {{pet.breed}}</p>
+        {% endif %}
+        <p class="text-capitalize fs-5">Age: {{pet.age_years}} years</p>
+
+
+    </div>
+</div>
+{% endblock %}
